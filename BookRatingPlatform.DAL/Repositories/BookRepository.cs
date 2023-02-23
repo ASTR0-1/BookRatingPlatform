@@ -27,6 +27,15 @@ public class BookRepository : IGenericRepository<Book>
         await _context.SaveChangesAsync();
     }
 
+    public IEnumerable<Book> FindAsync(Func<Book, bool> predicate)
+    {
+        return _context.Books
+            .Include(b => b.Ratings)
+            .Include(b => b.Reviews)
+            .Where(predicate)
+            .ToList();
+    }
+
     public async Task<IEnumerable<Book>> GetAllAsync()
     {
         return await _context.Books

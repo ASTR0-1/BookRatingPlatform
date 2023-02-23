@@ -1,4 +1,5 @@
-﻿using BookRatingPlatform.DAL.Interfaces;
+﻿using System.Linq;
+using BookRatingPlatform.DAL.Interfaces;
 using BookRatingPlatform.DAL.Models;
 using Microsoft.EntityFrameworkCore;
 
@@ -25,6 +26,14 @@ public class RatingRepository : IGenericRepository<Rating>
         _context.Rating.Remove(entity);
 
         await _context.SaveChangesAsync();
+    }
+
+    public IEnumerable<Rating> FindAsync(Func<Rating, bool> predicate)
+    {
+        return _context.Rating
+            .Include(r => r.Book)
+            .Where(predicate)
+            .ToList();
     }
 
     public async Task<IEnumerable<Rating>> GetAllAsync()
