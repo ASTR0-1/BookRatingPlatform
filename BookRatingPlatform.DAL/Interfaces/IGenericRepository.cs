@@ -8,7 +8,7 @@ internal interface IGenericRepository<T> where T : class
 
     Task<T> GetAsync(int id);
 
-    IEnumerable<T> Find(Func<T, bool> predicate);
+    IQueryable<T> Find(Func<T, bool> predicate);
 
     Task<T> AddAsync(T entity);
 

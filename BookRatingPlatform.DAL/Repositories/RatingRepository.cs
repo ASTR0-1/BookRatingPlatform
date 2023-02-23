@@ -30,12 +30,12 @@ public class RatingRepository : IGenericRepository<Rating>
         await _context.SaveChangesAsync();
     }
 
-    public IEnumerable<Rating> Find(Func<Rating, bool> predicate)
+    public IQueryable<Rating> Find(Func<Rating, bool> predicate)
     {
         return _context.Rating
             .Include(r => r.Book)
             .Where(predicate)
-            .ToList();
+            .AsQueryable();
     }
 
     public async Task<IEnumerable<Rating>> GetAllAsync()
