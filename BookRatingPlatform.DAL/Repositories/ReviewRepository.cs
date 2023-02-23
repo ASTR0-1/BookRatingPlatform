@@ -14,11 +14,13 @@ public class ReviewRepository : IGenericRepository<Review>
         _context = context;
     }
 
-    public async Task AddAsync(Review entity)
+    public async Task<Review> AddAsync(Review entity)
     {
         _context.Reviews.Add(entity);
 
         await _context.SaveChangesAsync();
+
+        return entity;
     }
 
     public async Task DeleteAsync(Review entity)
@@ -28,7 +30,7 @@ public class ReviewRepository : IGenericRepository<Review>
         await _context.SaveChangesAsync();
     }
 
-    public IEnumerable<Review> FindAsync(Func<Review, bool> predicate)
+    public IEnumerable<Review> Find(Func<Review, bool> predicate)
     {
         return _context.Reviews
             .Include(r => r.Book)

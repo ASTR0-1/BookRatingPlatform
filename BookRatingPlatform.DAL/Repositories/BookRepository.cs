@@ -13,11 +13,13 @@ public class BookRepository : IGenericRepository<Book>
         _context = context;
     }
 
-    public async Task AddAsync(Book entity)
+    public async Task<Book> AddAsync(Book entity)
     {
         _context.Books.Add(entity);
 
         await _context.SaveChangesAsync();
+
+        return entity;
     }
 
     public async Task DeleteAsync(Book entity)
@@ -27,7 +29,7 @@ public class BookRepository : IGenericRepository<Book>
         await _context.SaveChangesAsync();
     }
 
-    public IEnumerable<Book> FindAsync(Func<Book, bool> predicate)
+    public IEnumerable<Book> Find(Func<Book, bool> predicate)
     {
         return _context.Books
             .Include(b => b.Ratings)
