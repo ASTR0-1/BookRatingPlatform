@@ -16,5 +16,5 @@ public class BookDetailsDto
 
     public decimal Rating { get; set; }
 
-    public IEnumerable<ReviewForAddingDto> Reviews { get; set; }
+    public IEnumerable<ReviewDto> Reviews { get; set; }
 }

@@ -9,5 +9,8 @@ public class ReviewMappingProfile : Profile
 	{
 		CreateMap<Review, ReviewForAddingDto>()
 			.ReverseMap();
+
+		CreateMap<Review, ReviewDto>()
+			.ReverseMap();
 	}
 }
