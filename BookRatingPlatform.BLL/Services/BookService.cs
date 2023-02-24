@@ -71,8 +71,7 @@ public class BookService : IBookService
 
     public async Task<IEnumerable<BookDto>> GetAllBooksAsync(string? sortColumn, string? sortOrder = "asc")
     {
-        var books = (await _unitOfWork.BookRepository.GetAllAsync())
-            .AsQueryable<Book>();
+        var books = _unitOfWork.BookRepository.Find( b => true);
 
         if (!string.IsNullOrEmpty(sortColumn)
             && IsValidProperty(sortColumn))
@@ -86,7 +85,9 @@ public class BookService : IBookService
                 );
         }
 
-        var mappedBooks = _mapper.Map<List<BookDto>>(await books.ToListAsync());
+
+        var booksToMap = await Task.FromResult(books.ToList());
+        var mappedBooks = _mapper.Map<List<BookDto>>(booksToMap);
 
         return mappedBooks;
     }
@@ -112,7 +113,7 @@ public class BookService : IBookService
         else
             books = _unitOfWork.BookRepository.Find(b => b.Reviews.Count() >= 10);
 
-        var mappedBooks = _mapper.Map<List<BookDto>>(await books.ToListAsync());
+        var mappedBooks = _mapper.Map<List<BookDto>>(await Task.FromResult(books.ToList()));
 
         return mappedBooks;
     }

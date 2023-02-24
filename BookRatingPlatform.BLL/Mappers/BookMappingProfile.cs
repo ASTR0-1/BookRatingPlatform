@@ -14,8 +14,9 @@ public class BookMappingProfile : Profile
 			.ForMember(dto => dto.Rating,
 				opt =>
 				{
-					opt.MapFrom(b =>
-						Math.Round(b.Ratings.Average(r => r.BookRating), 1));
+					opt.MapFrom(b => b.Ratings.Count() > 0
+						? Math.Round(b.Ratings.Average(r => r.BookRating), 1)
+						: 0m);
 				})
 			.ReverseMap();
 
@@ -23,9 +24,12 @@ public class BookMappingProfile : Profile
 			.ForMember(dto => dto.Rating,
 				opt =>
 				{
-					opt.MapFrom(b =>
-						Math.Round(b.Ratings.Average(r => r.BookRating), 1));
-				})
+					opt.MapFrom(b => b.Ratings.Count() > 0
+                        ? Math.Round(b.Ratings.Average(r => r.BookRating), 1)
+                        : 0m);
+                })
 			.ReverseMap();
+
+		CreateMap<Book, BookForCreationDto>().ReverseMap();
 	}
 }
