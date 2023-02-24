@@ -29,7 +29,7 @@ public class BooksController : ControllerBase
         return Ok(books);
     }
 
-    [HttpGet("api/recommended")]
+    [HttpGet("/api/recommended")]
     public async Task<ActionResult<IEnumerable<BookDto>>> GetTopTenBooks([FromQuery] string? genre)
     {
         IEnumerable<BookDto> books = await _bookService.GetTopBooksAsync(genre);
