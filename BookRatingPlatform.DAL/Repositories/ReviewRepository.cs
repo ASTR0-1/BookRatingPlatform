@@ -33,6 +33,7 @@ public class ReviewRepository : IGenericRepository<Review>
     public IQueryable<Review> Find(Func<Review, bool> predicate)
     {
         return _context.Reviews
+            .AsNoTracking()
             .Include(r => r.Book)
             .Where(predicate)
             .AsQueryable();
@@ -41,6 +42,7 @@ public class ReviewRepository : IGenericRepository<Review>
     public async Task<IEnumerable<Review>> GetAllAsync()
     {
         return await _context.Reviews
+            .AsNoTracking()
             .Include(r => r.Book)
             .ToListAsync();
     }
@@ -48,6 +50,7 @@ public class ReviewRepository : IGenericRepository<Review>
     public async Task<Review> GetAsync(int id)
     {
         return await _context.Reviews
+            .AsNoTracking()
             .Include(r => r.Book)
             .FirstOrDefaultAsync(r => r.Id == id);
     }

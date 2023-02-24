@@ -32,6 +32,7 @@ public class BookRepository : IGenericRepository<Book>
     public IQueryable<Book> Find(Func<Book, bool> predicate)
     {
         return _context.Books
+            .AsNoTracking()
             .Include(b => b.Ratings)
             .Include(b => b.Reviews)
             .Where(predicate)
@@ -41,6 +42,7 @@ public class BookRepository : IGenericRepository<Book>
     public async Task<IEnumerable<Book>> GetAllAsync()
     {
         return await _context.Books
+            .AsNoTracking()
             .Include(b => b.Ratings)
             .Include(b => b.Reviews)
             .ToListAsync();
@@ -49,6 +51,7 @@ public class BookRepository : IGenericRepository<Book>
     public async Task<Book> GetAsync(int id)
     {
         return await _context.Books
+            .AsNoTracking()
             .Include(b => b.Ratings)
             .Include(b => b.Reviews)
             .FirstOrDefaultAsync(b => b.Id == id);

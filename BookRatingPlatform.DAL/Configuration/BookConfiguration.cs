@@ -12,10 +12,10 @@ public class BookConfiguration : IEntityTypeConfiguration<Book>
 
         builder.HasMany(b => b.Reviews)
             .WithOne(r => r.Book)
-            .HasForeignKey(r => r.Id);
+            .HasForeignKey(r => r.BookId);
 
         builder.HasMany(b => b.Ratings)
             .WithOne(r => r.Book)
-            .HasForeignKey(r => r.Id);
+            .HasForeignKey(r => r.BookId);
     }
 }

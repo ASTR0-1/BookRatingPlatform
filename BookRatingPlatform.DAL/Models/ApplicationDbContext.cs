@@ -1,4 +1,5 @@
 ﻿using System.Reflection;
+using BookRatingPlatform.BLL.DataSeeding;
 using Microsoft.EntityFrameworkCore;
 
 namespace BookRatingPlatform.DAL.Models;
@@ -19,11 +20,13 @@ public class ApplicationDbContext : DbContext
 	protected override void OnModelCreating(ModelBuilder modelBuilder)
 	{
 		modelBuilder.ApplyConfigurationsFromAssembly(Assembly.GetExecutingAssembly());
+
+		base.OnModelCreating(modelBuilder);
 	}
 
 	public DbSet<Book> Books { get; set; }
 
-	public DbSet<Rating> Rating { get; set; }
+	public DbSet<Rating> Ratings { get; set; }
 
 	public DbSet<Review> Reviews { get; set; }
 }

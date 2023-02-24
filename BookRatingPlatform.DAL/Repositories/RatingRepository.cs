@@ -16,7 +16,7 @@ public class RatingRepository : IGenericRepository<Rating>
 
     public async Task<Rating> AddAsync(Rating entity)
     {
-        _context.Rating.Add(entity);
+        _context.Ratings.Add(entity);
 
         await _context.SaveChangesAsync();
 
@@ -25,14 +25,15 @@ public class RatingRepository : IGenericRepository<Rating>
 
     public async Task DeleteAsync(Rating entity)
     {
-        _context.Rating.Remove(entity);
+        _context.Ratings.Remove(entity);
 
         await _context.SaveChangesAsync();
     }
 
     public IQueryable<Rating> Find(Func<Rating, bool> predicate)
     {
-        return _context.Rating
+        return _context.Ratings
+            .AsNoTracking()
             .Include(r => r.Book)
             .Where(predicate)
             .AsQueryable();
@@ -40,21 +41,23 @@ public class RatingRepository : IGenericRepository<Rating>
 
     public async Task<IEnumerable<Rating>> GetAllAsync()
     {
-        return await _context.Rating
+        return await _context.Ratings
+            .AsNoTracking()
             .Include(r => r.Book)
             .ToListAsync();
     }
 
     public async Task<Rating> GetAsync(int id)
     {
-        return await _context.Rating
+        return await _context.Ratings
+            .AsNoTracking()
             .Include(r => r.Book)
             .FirstOrDefaultAsync(r => r.Id == id);
     }
 
     public async Task UpdateAsync(Rating entity)
     {
-        _context.Rating.Update(entity);
+        _context.Ratings.Update(entity);
 
         await _context.SaveChangesAsync();
     }
