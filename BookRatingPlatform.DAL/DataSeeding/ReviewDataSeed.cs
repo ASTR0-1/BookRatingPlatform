@@ -6,9 +6,9 @@ namespace BookRatingPlatform.BLL.DataSeeding;
 
 public class ReviewDataSeed
 {
-    public static Review[] SeedReview()
+    public static List<Review> SeedReview()
     {
-        var reviews = new Review[]
+        var reviews = new List<Review>
         {
             new Review()
             {
