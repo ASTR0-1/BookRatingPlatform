@@ -1,5 +1,4 @@
-﻿using System.Linq;
-using BookRatingPlatform.DAL.Interfaces;
+﻿using BookRatingPlatform.DAL.Interfaces;
 using BookRatingPlatform.DAL.Models;
 using Microsoft.EntityFrameworkCore;
 
@@ -30,13 +29,13 @@ public class RatingRepository : IGenericRepository<Rating>
         await _context.SaveChangesAsync();
     }
 
-    public async Task<IQueryable<Rating>> FindAsync(Func<Rating, bool> predicate)
+    public IEnumerable<Rating> Find(Func<Rating, bool> predicate)
     {
-        return await Task.FromResult(_context.Ratings
+        return _context.Ratings
             .AsNoTracking()
             .Include(r => r.Book)
             .Where(predicate)
-            .AsQueryable());
+            .ToList();
     }
 
     public async Task<IEnumerable<Rating>> GetAllAsync()

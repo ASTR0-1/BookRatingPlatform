@@ -18,37 +18,37 @@ public class UnitOfWork : IUnitOfWork
         _context = context;
     }
 
-    public BookRepository BookRepository 
+    public BookRepository BookRepository
     {
         get
         {
-            lock (_lock )
+            lock (_lock)
             {
                 _bookRepository ??= new BookRepository(_context);
 
                 return _bookRepository;
             }
-        } 
+        }
     }
-    
-    public RatingRepository RatingRepository 
+
+    public RatingRepository RatingRepository
     {
-        get 
+        get
         {
-            lock (_lock )
+            lock (_lock)
             {
                 _ratingRepository ??= new RatingRepository(_context);
 
                 return _ratingRepository;
             }
-        } 
+        }
     }
-    
-    public ReviewRepository ReviewRepository 
-    { 
-        get 
+
+    public ReviewRepository ReviewRepository
+    {
+        get
         {
-            lock (_lock )
+            lock (_lock)
             {
                 _reviewRepository ??= new ReviewRepository(_context);
 

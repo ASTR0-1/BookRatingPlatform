@@ -1,6 +1,4 @@
-﻿using System.Linq.Expressions;
-
-namespace BookRatingPlatform.DAL.Interfaces;
+﻿namespace BookRatingPlatform.DAL.Interfaces;
 
 internal interface IGenericRepository<T> where T : class
 {
@@ -8,7 +6,7 @@ internal interface IGenericRepository<T> where T : class
 
     Task<T> GetAsync(int id);
 
-    Task<IQueryable<T>> FindAsync(Func<T, bool> predicate);
+    IEnumerable<T> Find(Func<T, bool> predicate);
 
     Task<T> AddAsync(T entity);
 

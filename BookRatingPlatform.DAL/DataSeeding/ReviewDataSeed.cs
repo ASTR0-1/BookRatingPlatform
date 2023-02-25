@@ -1,6 +1,4 @@
 ﻿using BookRatingPlatform.DAL.Models;
-using Microsoft.EntityFrameworkCore;
-using Microsoft.EntityFrameworkCore.Metadata.Builders;
 
 namespace BookRatingPlatform.BLL.DataSeeding;
 

@@ -5,12 +5,12 @@ namespace BookRatingPlatform.BLL.Validation;
 
 public class ReviewForAddingDtoValidator : AbstractValidator<ReviewForAddingDto>
 {
-	public ReviewForAddingDtoValidator()
-	{
-		RuleFor(e => e.Message)
-			.NotEmpty();
+    public ReviewForAddingDtoValidator()
+    {
+        RuleFor(e => e.Message)
+            .NotEmpty();
 
-		RuleFor(e => e.Reviewer)
-			.NotEmpty();
-	}
+        RuleFor(e => e.Reviewer)
+            .NotEmpty();
+    }
 }

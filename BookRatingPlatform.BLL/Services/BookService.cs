@@ -1,4 +1,5 @@
-﻿using System.Reflection;
+﻿using System.Linq.Dynamic.Core;
+using System.Reflection;
 using AutoMapper;
 using BookRatingPlatform.BLL.DTO;
 using BookRatingPlatform.BLL.Interfaces;
@@ -6,9 +7,6 @@ using BookRatingPlatform.DAL.Interfaces;
 using BookRatingPlatform.DAL.Models;
 using FluentValidation;
 using Microsoft.Extensions.Configuration;
-using System.Linq.Dynamic.Core;
-using System.Linq;
-using Microsoft.EntityFrameworkCore;
 
 namespace BookRatingPlatform.BLL.Services;
 
@@ -71,7 +69,7 @@ public class BookService : IBookService
 
     public async Task<IEnumerable<BookDto>> GetAllBooksAsync(string? sortColumn, string? sortOrder = "asc")
     {
-        var books = await _unitOfWork.BookRepository.FindAsync( b => true);
+        var books = _unitOfWork.BookRepository.Find(b => true).AsQueryable();
 
         if (!string.IsNullOrEmpty(sortColumn)
             && IsValidProperty(sortColumn))
@@ -79,12 +77,11 @@ public class BookService : IBookService
             sortOrder = !string.IsNullOrEmpty(sortOrder) && sortOrder.ToUpper() == "DESC" ? "DESC" : "ASC";
 
             books = books.OrderBy(
-                string.Format("{0} {1}", 
-                sortColumn, 
+                string.Format("{0} {1}",
+                sortColumn,
                 sortOrder)
                 );
         }
-
 
         var booksToMap = await Task.FromResult(books.ToList());
         var mappedBooks = _mapper.Map<List<BookDto>>(booksToMap);
@@ -106,12 +103,12 @@ public class BookService : IBookService
 
     public async Task<IEnumerable<BookDto>> GetTopBooksAsync(string? filter)
     {
-        IQueryable<Book> books;
+        IEnumerable<Book> books;
 
         if (!string.IsNullOrEmpty(filter))
-            books = await _unitOfWork.BookRepository.FindAsync(b => b.Genre == filter && b.Reviews.Count() >= 10);
+            books = _unitOfWork.BookRepository.Find(b => b.Genre == filter && b.Reviews.Count() >= 10);
         else
-            books = await _unitOfWork.BookRepository.FindAsync(b => b.Reviews.Count() >= 10);
+            books = _unitOfWork.BookRepository.Find(b => b.Reviews.Count() >= 10);
 
         var mappedBooks = _mapper.Map<List<BookDto>>(await Task.FromResult(books.ToList()));
 

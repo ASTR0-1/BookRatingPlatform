@@ -16,7 +16,7 @@ public class Program
 
         IServiceCollection services = builder.Services;
 
-        services.AddDbContext<ApplicationDbContext>(opts => 
+        services.AddDbContext<ApplicationDbContext>(opts =>
             opts.UseInMemoryDatabase("BookRatingPlatformDB"), ServiceLifetime.Scoped);
 
         services.ConfigureCors();

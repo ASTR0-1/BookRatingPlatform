@@ -5,12 +5,12 @@ using BookRatingPlatform.DAL.Models;
 namespace BookRatingPlatform.BLL.Mappers;
 public class ReviewMappingProfile : Profile
 {
-	public ReviewMappingProfile()
-	{
-		CreateMap<Review, ReviewForAddingDto>()
-			.ReverseMap();
+    public ReviewMappingProfile()
+    {
+        CreateMap<Review, ReviewForAddingDto>()
+            .ReverseMap();
 
-		CreateMap<Review, ReviewDto>()
-			.ReverseMap();
-	}
+        CreateMap<Review, ReviewDto>()
+            .ReverseMap();
+    }
 }
