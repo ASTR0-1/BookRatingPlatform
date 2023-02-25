@@ -58,22 +58,34 @@ public static class ServiceExtensions
         });
     }
 
-    public static void SeedData(this IApplicationBuilder app)
+    public static async Task SeedData(this IApplicationBuilder app)
     {
-        using (var scope = app.ApplicationServices.CreateScope())
+        using var scope = app.ApplicationServices.CreateScope();
+
+        var services = scope.ServiceProvider;
+        var context = services.GetService<ApplicationDbContext>();
+
+        context.Database.EnsureCreated();
+
+        if (!context.Books.Any())
         {
-            var services = scope.ServiceProvider;
-            var context = services.GetService<ApplicationDbContext>();
-
             var books = BookDataSeed.SeedBook();
-            var ratings = RatingDataSeed.SeedRating();
-            var reviews = ReviewDataSeed.SeedReview();
-
             context.Books.AddRange(books);
-            context.Reviews.AddRange(reviews);
-            context.Ratings.AddRange(ratings);
+            await context.SaveChangesAsync();
+        }
 
-            context.SaveChanges();
+        if (!context.Ratings.Any())
+        {
+            var ratings = RatingDataSeed.SeedRating();
+            context.Ratings.AddRange(ratings);
+            await context.SaveChangesAsync();
+        }
+
+        if (!context.Reviews.Any())
+        {
+            var reviews = ReviewDataSeed.SeedReview();
+            context.Reviews.AddRange(reviews);
+            await context.SaveChangesAsync();
         }
     }
 }

@@ -1,5 +1,4 @@
 ﻿using System.Reflection;
-using BookRatingPlatform.BLL.DataSeeding;
 using Microsoft.EntityFrameworkCore;
 
 namespace BookRatingPlatform.DAL.Models;

@@ -30,13 +30,13 @@ public class ReviewRepository : IGenericRepository<Review>
         await _context.SaveChangesAsync();
     }
 
-    public IQueryable<Review> Find(Func<Review, bool> predicate)
+    public async Task<IQueryable<Review>> FindAsync(Func<Review, bool> predicate)
     {
-        return _context.Reviews
+        return await Task.FromResult(_context.Reviews
             .AsNoTracking()
             .Include(r => r.Book)
             .Where(predicate)
-            .AsQueryable();
+            .AsQueryable());
     }
 
     public async Task<IEnumerable<Review>> GetAllAsync()

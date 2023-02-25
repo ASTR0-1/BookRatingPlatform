@@ -10,7 +10,7 @@ namespace BookRatingPlatform.API;
 
 public class Program
 {
-    public static void Main(string[] args)
+    public static async Task Main(string[] args)
     {
         var builder = WebApplication.CreateBuilder(args);
 
@@ -38,7 +38,7 @@ public class Program
 
         var app = builder.Build();
 
-        app.SeedData();
+        await app.SeedData();
 
         if (app.Environment.IsDevelopment())
         {

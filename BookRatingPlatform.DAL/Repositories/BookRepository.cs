@@ -29,14 +29,14 @@ public class BookRepository : IGenericRepository<Book>
         await _context.SaveChangesAsync();
     }
 
-    public IQueryable<Book> Find(Func<Book, bool> predicate)
+    public async Task<IQueryable<Book>> FindAsync(Func<Book, bool> predicate)
     {
-        return _context.Books
+        return await Task.FromResult(_context.Books
             .AsNoTracking()
             .Include(b => b.Ratings)
             .Include(b => b.Reviews)
             .Where(predicate)
-            .AsQueryable();
+            .AsQueryable());
     }
 
     public async Task<IEnumerable<Book>> GetAllAsync()
