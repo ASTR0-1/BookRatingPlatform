@@ -1,0 +1,39 @@
+<h2 mat-dialog-title>Details</h2>
+<hr />
+<mat-dialog-content
+	*ngIf="bookDetails$ | async as bookDetails"
+	class="mat-typography container"
+>
+	<mat-grid-list cols="2" class="p-0 mb-2 content-container">
+		<mat-grid-tile>
+			<div class="d-flex flex-column gap-5 align-items-center h-100">
+				<img mat-card-xl-image [src]="bookDetails.cover" />
+				<h2>
+					Rating: {{ bookDetails.rating }} Reviews:
+					{{ bookDetails.reviews.length }}
+				</h2>
+			</div>
+		</mat-grid-tile>
+		<mat-grid-tile>
+			<div class="d-flex flex-column h-100 w-100">
+				<h2>{{ bookDetails.title }}</h2>
+				<h3>{{ bookDetails.author }}, {{ bookDetails.genre }}</h3>
+				<p style="overflow-y: auto">
+					{{ bookDetails.content }}
+				</p>
+			</div>
+		</mat-grid-tile>
+	</mat-grid-list>
+	<mat-grid-list cols="1">
+		<h2>Reviews</h2>
+		<hr />
+		<div
+			*ngFor="let review of bookDetails.reviews"
+			class="d-flex flex-column gap-1"
+		>
+			<h3>{{ review.reviewer }}</h3>
+			<p>{{ review.message }}</p>
+			<hr />
+		</div>
+	</mat-grid-list>
+</mat-dialog-content>

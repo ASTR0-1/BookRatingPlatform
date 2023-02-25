@@ -1,0 +1,16 @@
+<body>
+	<mat-toolbar>
+		<span class="p-2" selec>Library</span>
+	</mat-toolbar>
+
+	<mat-card class="container mt-4 rounded add-edit-card">
+		<app-operate-book
+			[bookId]="selectedBookId"
+			(bookOperationComplete)="reloadBookList()"
+		></app-operate-book>
+	</mat-card>
+
+	<mat-card class="container mt-4 rounded books-tabs">
+		<app-book-list (editBookId)="selectedBookId = $event"></app-book-list>
+	</mat-card>
+</body>

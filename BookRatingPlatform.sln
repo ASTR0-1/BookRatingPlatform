@@ -3,16 +3,37 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.4.33403.182
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BookRatingPlatform.API", "BookRatingPlatform.API\BookRatingPlatform.API.csproj", "{169B823A-3F79-479A-ABF5-DCEB256738F3}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BookRatingPlatform.API", "BookRatingPlatform.API\BookRatingPlatform.API.csproj", "{169B823A-3F79-479A-ABF5-DCEB256738F3}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BookRatingPlatform.DAL", "BookRatingPlatform.DAL\BookRatingPlatform.DAL.csproj", "{6103180C-3086-4725-AB88-1296A6CCC2C1}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BookRatingPlatform.DAL", "BookRatingPlatform.DAL\BookRatingPlatform.DAL.csproj", "{6103180C-3086-4725-AB88-1296A6CCC2C1}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{16039856-2E05-49BE-839D-9D00E64051AA}"
 	ProjectSection(SolutionItems) = preProject
 		.editorconfig = .editorconfig
 	EndProjectSection
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BookRatingPlatform.BLL", "BookRatingPlatform.BLL\BookRatingPlatform.BLL.csproj", "{9D824018-E770-458F-A9E7-79DEA27BCB7F}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BookRatingPlatform.BLL", "BookRatingPlatform.BLL\BookRatingPlatform.BLL.csproj", "{9D824018-E770-458F-A9E7-79DEA27BCB7F}"
+EndProject
+Project("{E24C65DC-7377-472B-9ABA-BC803B73C61A}") = "BookRatingPlatform.UI", "BookRatingPlatform.UI\", "{41433601-124D-480E-96C0-6B41FCD09664}"
+	ProjectSection(WebsiteProperties) = preProject
+		TargetFrameworkMoniker = ".NETFramework,Version%3Dv4.0"
+		Debug.AspNetCompiler.VirtualPath = "/localhost_62933"
+		Debug.AspNetCompiler.PhysicalPath = "BookRatingPlatform.UI\"
+		Debug.AspNetCompiler.TargetPath = "PrecompiledWeb\localhost_62933\"
+		Debug.AspNetCompiler.Updateable = "true"
+		Debug.AspNetCompiler.ForceOverwrite = "true"
+		Debug.AspNetCompiler.FixedNames = "false"
+		Debug.AspNetCompiler.Debug = "True"
+		Release.AspNetCompiler.VirtualPath = "/localhost_62933"
+		Release.AspNetCompiler.PhysicalPath = "BookRatingPlatform.UI\"
+		Release.AspNetCompiler.TargetPath = "PrecompiledWeb\localhost_62933\"
+		Release.AspNetCompiler.Updateable = "true"
+		Release.AspNetCompiler.ForceOverwrite = "true"
+		Release.AspNetCompiler.FixedNames = "false"
+		Release.AspNetCompiler.Debug = "False"
+		VWDPort = "62933"
+		SlnRelativePath = "BookRatingPlatform.UI\"
+	EndProjectSection
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -32,6 +53,10 @@ Global
 		{9D824018-E770-458F-A9E7-79DEA27BCB7F}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{9D824018-E770-458F-A9E7-79DEA27BCB7F}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{9D824018-E770-458F-A9E7-79DEA27BCB7F}.Release|Any CPU.Build.0 = Release|Any CPU
+		{41433601-124D-480E-96C0-6B41FCD09664}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{41433601-124D-480E-96C0-6B41FCD09664}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{41433601-124D-480E-96C0-6B41FCD09664}.Release|Any CPU.ActiveCfg = Debug|Any CPU
+		{41433601-124D-480E-96C0-6B41FCD09664}.Release|Any CPU.Build.0 = Debug|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
